@@ -1,0 +1,59 @@
+from torchvision import datasets
+import torchvision.transforms as transforms
+from transformers import DistilBertTokenizer
+from torch.utils.data import DataLoader
+import random
+
+class ImageTransform(object):
+    def __init__(self, image_size):
+        self.transform = transforms.Compose([
+            transforms.Resize(image_size),
+            transforms.ToTensor()
+        ])
+
+    def __call__(self, image):
+        return self.transform(image)
+
+class CaptionTransform(object):
+    def __init__(self, tokenizer, context_length, shuffle_captions):
+        self.context_length = context_length
+        self.shuffle_captions = shuffle_captions
+        self.tokenizer = tokenizer
+
+    def __call__(self, captions):
+        if self.shuffle_captions:
+            caption = random.choice(captions)
+        else:
+            caption = captions[0]
+
+        return self.tokenizer(caption,
+                              padding="max_length",
+                              truncation=True,
+                              max_length=self.context_length,
+                              return_tensors='pt')
+
+class COCOCaptionsData(object):
+    def __init__(self, config):
+        self.tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
+        self.config = config.data
+        
+        self.dataset = datasets.CocoCaptions(
+            root=self.config.images_path,
+            annFile=self.config.annotations_path,
+            transform=ImageTransform(image_size = tuple(self.config.image_size)),
+            target_transform=CaptionTransform(self.tokenizer,
+                                                self.config.context_length,
+                                                self.config.shuffle_captions)
+            )
+
+        self.dataloader = DataLoader(
+            self.dataset,
+            batch_size=self.config.batch_size,
+            num_workers=4,
+            drop_last=True,
+            shuffle=True
+            )
+
+    def get_dataloader(self):
+        return self.dataloader
+

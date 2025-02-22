@@ -1,0 +1,10 @@
+settings:
+  is_distributed: false
+data:
+  images_path: /coco/train2017/
+  annotations_path: /coco/annotations/captions_train2017.json
+  image_size:
+  - 224
+  - 224
+  context_length: 77
+  shuffle_captions: true

@@ -49,8 +49,7 @@ Given a batch of images and a batch of text tokens and masks, returns a matrix o
 
 ## Training
 
-Update hyperparameters for training in `config.yaml` file. To use the sigmoid loss, change loss under algorithm config to `siglip` from `clip`.
-
+Update hyperparameters for training in `config.yaml` file. The SigLIP paper introduced a novel contrastive learning objective that performs better than softmax baselines, particularly for small batch sizes. To use the sigmoid loss, change loss under algorithm config to `siglip` from `clip`.
 
 ## Running Code
 

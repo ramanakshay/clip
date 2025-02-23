@@ -6,9 +6,9 @@ from torch.utils.data import DataLoader
 import random
 
 class ImageTransform(object):
-    def __init__(self, image_size):
+    def __init__(self):
         self.transform = transforms.Compose([
-            transforms.Resize(image_size),
+            transforms.Resize((224,224)), # resnet input
             transforms.ToTensor()
         ])
 
@@ -45,7 +45,7 @@ class COCOCaptionsData(object):
         self.dataset = datasets.CocoCaptions(
             root=self.config.images_path,
             annFile=self.config.annotations_path,
-            transform=ImageTransform(image_size = tuple(self.config.image_size)),
+            transform=ImageTransform(),
             target_transform=CaptionTransform(self.tokenizer,
                                                 self.config.context_length,
                                                 self.config.shuffle_captions)

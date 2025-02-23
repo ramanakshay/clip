@@ -30,17 +30,17 @@ CLIP model consists of two encoder:
 
 2. **Text Encoder**: DistilBERT (backbone) + 2 Linear Layers (projection).
 
-`CLIPModel` supports the following methods:
+CLIP supports the following methods:
 
-### `model.encode_image(image: Tensor)`
+#### `model.encode_image(image: Tensor)`
 
 Given a batch of images, returns the image features encoded by the image encoder of the CLIP model.
 
-### `model.encode_text(text: Tensor, text_mask: Tensor)`
+#### `model.encode_text(text: Tensor, text_mask: Tensor)`
 
 Given a batch of text tokens and associated masks, returns the text features encoded by the text encoder of the CLIP model.
 
-### `model.generate_similarity_matrix(image: Tensor, text: Tensor, text_mask: Tensor)`
+#### `model.generate_similarity_matrix(image: Tensor, text: Tensor, text_mask: Tensor)`
 
 Given a batch of images and a batch of text tokens and masks, returns a matrix of scaled cosine similarities between the corresponding image and text features.
 

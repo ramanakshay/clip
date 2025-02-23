@@ -5,6 +5,7 @@ from model.clip import CLIP
 class CLIPModel(object):
     def __init__(self, config):
         self.config = config.model
+        self.device = config.settings.device
 
         if config.algorithm.loss == 'clip':
             init_temp, init_bias = np.log(5), 0
@@ -16,7 +17,7 @@ class CLIPModel(object):
             proj_dim=self.config.proj_dim,
             init_temp=init_temp,
             init_bias=init_bias
-            )
+            ).to(self.device)
 
     def generate_similarity_matrix(self, image, text, text_mask):
         return self.clip(image, text, text_mask)

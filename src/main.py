@@ -1,5 +1,6 @@
 from data.data import COCOCaptionsData
 from model.model import CLIPModel
+from algorithm.train import Trainer
 
 import hydra
 from omegaconf import DictConfig, OmegaConf
@@ -8,27 +9,18 @@ from omegaconf import DictConfig, OmegaConf
 def main(config : DictConfig) -> None:
     ## DATA ##
     data = COCOCaptionsData(config)
+    dataloader = data.get_dataloader()
     print('Data Loaded.')
 
-    dataset = data.dataset
-
-    dataloader = data.get_dataloader()
-    #
-    # ## MODEL ##
+    ## MODEL ##
     model = CLIPModel(config)
     print('Model Created.')
 
-    for img, text in dataloader:
-        output = model.generate_similarity_matrix(img, text['input_ids'], text['attention_mask'])
-        print(output.size())
-        break
-
-
     # ## ALGORITHM ##
-    # print('Running Algorithm.')
-    # alg = Trainer(data, model, config)
-    # alg.run()
-    # print('Done!')
+    print('Running Algorithm.')
+    alg = Trainer(dataloader, model, config)
+    alg.run()
+    print('Done!')
 
 if __name__ == "__main__":
     main()

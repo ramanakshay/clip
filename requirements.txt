@@ -2,3 +2,4 @@ pytorch
 torchvision
 pycocotools
 transformers
+tqdm

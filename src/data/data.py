@@ -1,3 +1,4 @@
+import torch
 from torchvision import datasets
 import torchvision.transforms as transforms
 from transformers import DistilBertTokenizer
@@ -14,6 +15,7 @@ class ImageTransform(object):
     def __call__(self, image):
         return self.transform(image)
 
+
 class CaptionTransform(object):
     def __init__(self, tokenizer, context_length, shuffle_captions):
         self.context_length = context_length
@@ -26,11 +28,14 @@ class CaptionTransform(object):
         else:
             caption = captions[0]
 
-        return self.tokenizer(caption,
+        instance = self.tokenizer(caption,
                               padding="max_length",
                               truncation=True,
-                              max_length=self.context_length,
-                              return_tensors='pt')
+                              max_length=self.context_length)
+
+        tokenized_caption = {key:torch.tensor(value) for key,value in instance.items()}
+        return tokenized_caption
+
 
 class COCOCaptionsData(object):
     def __init__(self, config):

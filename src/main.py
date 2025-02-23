@@ -1,4 +1,5 @@
 from data.data import COCOCaptionsData
+from model.classifier import Classifier
 
 import hydra
 from omegaconf import DictConfig, OmegaConf
@@ -9,19 +10,20 @@ def main(config : DictConfig) -> None:
     data = COCOCaptionsData(config)
     print('Data Loaded.')
 
-    dataloader = data.get_dataloader()
+    dataset = data.dataset
 
-    for imgs, caps in dataloader:
-        print(imgs.size())
-        for key, val in caps.items():
-            print(key, val.size())
+    dataloader = data.get_dataloader()
+    #
+    # ## MODEL ##
+    model = Classifier(config)
+    print('Model Created.')
+
+    for img, text in dataloader:
+        output = model.generate_similarity_matrix(img, text['input_ids'], text['attention_mask'])
+        print(output.size())
         break
 
 
-    # ## MODEL ##
-    # model = Classifier(config)
-    # print('Model Created.')
-    #
     # ## ALGORITHM ##
     # print('Running Algorithm.')
     # alg = Trainer(data, model, config)

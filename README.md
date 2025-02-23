@@ -75,13 +75,6 @@ cd src
 python main.py
 ```
 
-### Requirements
-- [pytorch](https://pytorch.org/)
-- [torchvision](https://pytorch.org/vision/stable/index.html)
-- [pycocotools](https://pypi.org/project/pycocotools/)
-- [transformers](https://huggingface.co/docs/transformers/en/index)
-- [tqdm](https://tqdm.github.io/)
-
 ## TODOs
 
 - [ ] zero-shot classifier

@@ -17,7 +17,7 @@ data:
     image_size: [224, 224]
     context_length: 77
     shuffle_captions: False
-    batch_size: 128
+    batch_size: 64
 
 model:
     from_pretrained: True

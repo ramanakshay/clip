@@ -1,5 +1,5 @@
 from data.data import COCOCaptionsData
-from model.classifier import Classifier
+from model.model import CLIPModel
 
 import hydra
 from omegaconf import DictConfig, OmegaConf
@@ -15,7 +15,7 @@ def main(config : DictConfig) -> None:
     dataloader = data.get_dataloader()
     #
     # ## MODEL ##
-    model = Classifier(config)
+    model = CLIPModel(config)
     print('Model Created.')
 
     for img, text in dataloader:

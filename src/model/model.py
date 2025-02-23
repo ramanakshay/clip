@@ -2,7 +2,7 @@ import numpy as np
 from model.clip import CLIP
 
 
-class Classifier(object):
+class CLIPModel(object):
     def __init__(self, config):
         self.config = config.model
 

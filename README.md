@@ -24,7 +24,7 @@ $ unzip data/mscoco/train2017.zip -d data/mscoco
 $ wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip -O data/mscoco/annotations_trainval2017.zip
 $ unzip data/mscoco/annotations_trainval2017.zip -d data/mscoco
 ```
-
+Note: The input text is tokenized using the DistilBERTTokenizer from HuggingFace. You can set your desired context size and enable shuffling (between multiple captions) in the config file. Input images are also resized to (224,224) which is the input size of the ResNet50 model.
 ## Model
 
 CLIP model consists of two encoder:
@@ -35,15 +35,15 @@ CLIP model consists of two encoder:
 
 CLIP supports the following methods:
 
-#### `model.encode_image(image: Tensor)`
+**`model.encode_image(image: Tensor)`**
 
 Given a batch of images, returns the image features encoded by the image encoder of the CLIP model.
 
-#### `model.encode_text(text: Tensor, text_mask: Tensor)`
+**`model.encode_text(text: Tensor, text_mask: Tensor)`**
 
 Given a batch of text tokens and associated masks, returns the text features encoded by the text encoder of the CLIP model.
 
-#### `model.generate_similarity_matrix(image: Tensor, text: Tensor, text_mask: Tensor)`
+**`model.generate_similarity_matrix(image: Tensor, text: Tensor, text_mask: Tensor)`**
 
 Given a batch of images and a batch of text tokens and masks, returns a matrix of scaled cosine similarities between the corresponding image and text features.
 
@@ -55,11 +55,11 @@ Update hyperparameters for training in `config.yaml` file. The SigLIP paper intr
 
 1. Install dependencies from requirements file. Make sure to create a virtual/conda environment before running this command.
 ```
-# create new env clip_train
-conda create -n clip_train python=3.11
+# create new env clip_env
+conda create -n clip python=3.11
 
-# activate clip_train
-conda activate clip_train
+# activate clip_env
+conda activate clip_env
 
 # install other dependencies
 pip install -r requirements.txt
@@ -67,7 +67,7 @@ pip install -r requirements.txt
 
 2. Run `main.py` which starts the training script.
 ```
-# go to the src folder
+# navigate to the src folder
 cd src
 
 # run the main file

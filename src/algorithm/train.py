@@ -24,7 +24,7 @@ class Trainer(object):
         self.dataloader = dataloader
         self.model = model
         self.config = config.algorithm
-        self.device = config.settings.device
+        self.device = config.system.device
         self.loss = contrastive_loss if self.config.loss == 'clip' else siglip_loss
         self.optimizer = optim.Adam(self.model.clip.parameters(),
                                     lr=self.config.learning_rate,

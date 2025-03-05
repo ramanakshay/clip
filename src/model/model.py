@@ -5,7 +5,7 @@ from model.clip import CLIP
 class CLIPModel(object):
     def __init__(self, config):
         self.config = config.model
-        self.device = config.settings.device
+        self.device = config.system.device
 
         if config.algorithm.loss == 'clip':
             init_temp, init_bias = np.log(5), 0

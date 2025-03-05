@@ -1,4 +1,4 @@
-settings:
+system:
     device: cuda
 
 data:

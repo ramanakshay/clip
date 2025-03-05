@@ -19,7 +19,7 @@ def siglip_loss(logits):
     return -torch.sum(F.logsigmoid(labels * logits)) / n
 
 
-class Trainer(object):
+class Trainer:
     def __init__(self, dataloader, model, config):
         self.dataloader = dataloader
         self.model = model

@@ -5,7 +5,7 @@ from transformers import DistilBertTokenizer
 from torch.utils.data import DataLoader
 import random
 
-class ImageTransform(object):
+class ImageTransform:
     def __init__(self):
         self.transform = transforms.Compose([
             transforms.Resize((224,224)), # resnet input
@@ -16,7 +16,7 @@ class ImageTransform(object):
         return self.transform(image)
 
 
-class CaptionTransform(object):
+class CaptionTransform:
     def __init__(self, tokenizer, context_length, shuffle_captions):
         self.context_length = context_length
         self.shuffle_captions = shuffle_captions
@@ -37,7 +37,7 @@ class CaptionTransform(object):
         return tokenized_caption
 
 
-class COCOCaptionsData(object):
+class COCOCaptionsData:
     def __init__(self, config):
         self.tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
         self.config = config.data

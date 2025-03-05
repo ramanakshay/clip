@@ -24,7 +24,7 @@ $ unzip data/mscoco/train2017.zip -d data/mscoco
 $ wget http://images.cocodataset.org/annotations/annotations_trainval2017.zip -O data/mscoco/annotations_trainval2017.zip
 $ unzip data/mscoco/annotations_trainval2017.zip -d data/mscoco
 ```
-Note: The input text is tokenized using the DistilBERTTokenizer from HuggingFace. You can set your desired context size and enable shuffling (between multiple captions) in the config file. Input images are also resized to (224,224) which is the input size of the ResNet50 model.
+Note: The input text is tokenized using the DistilBERTTokenizer from HuggingFace. You can set your desired context size and enable shuffling (between :multiple captions) in the config file. Input images are also resized to (224,224) which is the input size of the ResNet50 model.
 ## Model
 
 CLIP model consists of two encoder:

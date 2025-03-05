@@ -2,7 +2,7 @@ import numpy as np
 from model.clip import CLIP
 
 
-class CLIPModel(object):
+class CLIPModel:
     def __init__(self, config):
         self.config = config.model
         self.device = config.system.device

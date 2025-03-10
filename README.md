@@ -76,6 +76,8 @@ python main.py
 
 ## To-Dos
 
+Any kind of enhancement or contribution is welcomed.
+
 - [ ] zero-shot classifier
 - [ ] support for loggers
 

@@ -3,7 +3,7 @@
 Contrastive Language-Image Pre-training (CLIP) is a technique for training a pair of neural network models, one for image understanding and one for text understanding, using a contrastive objective. This project contains code to train CLIP on the MS-COCO Captions dataset. It also includes an implementation of SigLIP, which uses a sigmoid loss as the training objective.
 
 <p align="center">
-  <img width="80%" alt="CLIP Training" src="assets/clip-training.svg" >
+  <img width="70%" alt="CLIP Training" src="assets/clip-training.svg" >
 </p>
 
 

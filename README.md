@@ -74,7 +74,7 @@ cd src
 python main.py
 ```
 
-## TODOs
+## To-Dos
 
 - [ ] zero-shot classifier
 - [ ] support for loggers
